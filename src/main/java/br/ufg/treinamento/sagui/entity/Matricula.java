@@ -1,5 +1,7 @@
 package br.ufg.treinamento.sagui.entity;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,20 +14,24 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(schema = "public", name = "MATRICULA")
-
 public class Matricula {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name="nome_curso")
-	private String nomeCurso;
-	
-	@Column(name="nome_aluno")
-	private String nome;
-	
-	@Column(name="observacao")
+	@Column(name = "id_aluno")
+	private int idAluno;
+
+	@Column(name = "id_curso")
+	private int idCurso;
+
+	@Column(name = "observacao")
 	private String observacao;
+
+	public Matricula() {
+
+	}
 
 	public String getObservacao() {
 		return observacao;
@@ -43,22 +49,37 @@ public class Matricula {
 		this.id = id;
 	}
 
-	public String getNomeCurso() {
-		return nomeCurso;
+	public int getIdAluno() {
+		return idAluno;
 	}
 
-	public void setNomeCurso(String nomeCurso) {
-		this.nomeCurso = nomeCurso;
+	public void setIdAluno(int idAluno) {
+		this.idAluno = idAluno;
 	}
 
-	public String getNome() {
-		return nome;
+	public int getIdCurso() {
+		return idCurso;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Matricula other = (Matricula) obj;
+		return Objects.equals(id, other.id);
+	}
 
 }

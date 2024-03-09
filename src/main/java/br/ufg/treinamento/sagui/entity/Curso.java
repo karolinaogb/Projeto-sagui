@@ -1,6 +1,7 @@
 package br.ufg.treinamento.sagui.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +37,11 @@ public class Curso {
 
 		@Column(name="observacao")
 		private String observacao;
+
+		
+		public Curso() {
+			
+		}
 
 		public Integer getId() {
 			return id;
@@ -83,5 +89,23 @@ public class Curso {
 
 		public void setObservacao(String observacao) {
 			this.observacao = observacao;
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(id);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Curso other = (Curso) obj;
+			return Objects.equals(id, other.id);
 		}		
+		
 }
